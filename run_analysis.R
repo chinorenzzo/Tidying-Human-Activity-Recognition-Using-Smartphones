@@ -7,37 +7,24 @@ library(dplyr)
 ## Download and unzip raw data in directory "raw_data", if directory does not exist 
 ## it creates the directory.
 
-#if (!file.exists("./raw_data")){
-#    dir.create("./raw_data")
-#}
-#fileurl<-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-#download.file(fileurl,"./raw_data/HAR_dataset.zip")
-#unzip("./raw_data/HAR_dataset.zip",exdir="./raw_data")
-unzip("HAR_dataset.zip")
+if (!file.exists("./raw_data")){
+    dir.create("./raw_data")
+}
+fileurl<-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+download.file(fileurl,"./raw_data/HAR_dataset.zip")
+unzip("./raw_data/HAR_dataset.zip",exdir="./raw_data")
 
 
 ## Read raw data sets
 
-#activityLabels<-read.table("./raw_data/UCI HAR Dataset/activity_labels.txt")
-#features<-read.table("./raw_data/UCI HAR Dataset/features.txt")
-#XTrain<-read.table("./raw_data/UCI HAR Dataset/train/X_train.txt")
-#YTrain<-read.table("./raw_data/UCI HAR Dataset/train/Y_train.txt")
-#subjectTrain<-read.table("./raw_data/UCI HAR Dataset/train/subject_train.txt")
-#XTest<-read.table("./raw_data/UCI HAR Dataset/test/X_test.txt")
-#YTest<-read.table("./raw_data/UCI HAR Dataset/test/y_test.txt")
-#subjectTest<-read.table("./raw_data/UCI HAR Dataset/test/subject_test.txt")
-
-activityLabels<-read.table("./UCI HAR Dataset/activity_labels.txt")
-features<-read.table("./UCI HAR Dataset/features.txt")
-XTrain<-read.table("./UCI HAR Dataset/train/X_train.txt")
-YTrain<-read.table("./UCI HAR Dataset/train/Y_train.txt")
-subjectTrain<-read.table("./UCI HAR Dataset/train/subject_train.txt")
-XTest<-read.table("./UCI HAR Dataset/test/X_test.txt")
-YTest<-read.table("./UCI HAR Dataset/test/y_test.txt")
-subjectTest<-read.table("./UCI HAR Dataset/test/subject_test.txt")
-
-
-## Merge train and test data sets
+activityLabels<-read.table("./raw_data/UCI HAR Dataset/activity_labels.txt")
+features<-read.table("./raw_data/UCI HAR Dataset/features.txt")
+XTrain<-read.table("./raw_data/UCI HAR Dataset/train/X_train.txt")
+YTrain<-read.table("./raw_data/UCI HAR Dataset/train/Y_train.txt")
+subjectTrain<-read.table("./raw_data/UCI HAR Dataset/train/subject_train.txt")
+XTest<-read.table("./raw_data/UCI HAR Dataset/test/X_test.txt")
+YTest<-read.table("./raw_data/UCI HAR Dataset/test/y_test.txt")
+subjectTest<-read.table("./raw_data/UCI HAR Dataset/test/subject_test.txt")
 
 ## Merge train data set
 train<-cbind(XTrain,YTrain,subjectTrain)
@@ -65,15 +52,15 @@ for(i in 1:6){
 meanSummary<-dataSet %>% group_by(Y_Activity,subject) %>%
 summarize_all(mean)
 
-## Second output
+## output
 tidymeanSummary<-meanSummary
 
 ## Save the 2 outputs in the directory tidy_data as a .txt
-#if (!file.exists("./tidy_data")){
-#    dir.create("./tidy_data")
-#}
-#write.table(tidymeanSummary,"./tidy_data/tidyMeanSummary.txt",row.names = F)
-write.table(tidymeanSummary,"./tidyMeanSummary.txt",row.names = F)
+if (!file.exists("./tidy_data")){
+    dir.create("./tidy_data")
+}
+write.table(tidymeanSummary,"./tidy_data/tidyMeanSummary.txt",row.names = F)
+
 
 
 

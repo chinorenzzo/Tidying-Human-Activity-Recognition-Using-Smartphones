@@ -12,7 +12,7 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 
 ### Process to transform data
 
-1. Unzip the Dataset zip file
+1. Download and unzip the Dataset zip file
 2. Merges subject_test, X_test and y_test in one table.
 3. Merges subject_train, X_train and y_train in one table.
 4. Merge the new tables from points 1 and 2 in one table.
